@@ -56,6 +56,10 @@ exports.init = function(grunt) {
       command += ' --ssl-protocol='+ options.sslProtocol;
     }
 
+    if (options.ignoreSslErrors) {
+      command += ' --ignore-ssl-errors='+ options.ignoreSslErrors;
+    }
+
 
 
     command += " " + filepath;
