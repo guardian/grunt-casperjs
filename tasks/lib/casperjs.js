@@ -1,10 +1,13 @@
+var path = require('path')
+
 exports.init = function(grunt) {
   var exports = {};
-  
+
   exports.casperjs = function(filepath, options, callback) {
 
-    var command = 'casperjs test',
-        exec = require('child_process').exec;
+    var command = path.join(__dirname, '..', '..', 'casperjs') + ' test',
+        exec = require('child_process').exec,
+        phantomBinPath = require('phantomjs').path;
 
     // Add options documented in the following web site:
     //   http://casperjs.org/testing.html
@@ -23,7 +26,7 @@ exports.init = function(grunt) {
     if (options.logLevel) {
       command += ' --log-level=' + options.logLevel;
     }
-    
+
     if (options.engine) {
       command += ' --engine=' + options.engine;
     }
@@ -35,7 +38,7 @@ exports.init = function(grunt) {
     if (options.post) {
       command += ' --post=' + options.post.join(',');
     }
-	
+
 	  if (options.webSecurity === false) {
       command += ' --web-security=no';
     }
@@ -64,10 +67,18 @@ exports.init = function(grunt) {
       command += ' --cookies-file='+ options.cookiesFile;
     }
 
+    if (options.ignoreSslErrors) {
+      command += ' --ignore-ssl-errors='+ options.ignoreSslErrors;
+    }
+
+
+    if (options.ignoreSslErrors) {
+      command += ' --ignore-ssl-errors=yes';
+    }
 
     command += " " + filepath;
 
-    grunt.log.write("Command: " + command);
+    grunt.log.writeln("Command: " + command);
 
     function puts(error, stdout, stderr) {
       grunt.log.write('\nRunning tests from "' + filepath + '":\n');
@@ -80,9 +91,13 @@ exports.init = function(grunt) {
       }
     }
 
-    exec(command, puts);
-    
+    exec(command, {
+        env: {
+            "PHANTOMJS_EXECUTABLE": phantomBinPath
+        }
+    }, puts);
+
   };
-  
+
   return exports;
 };
