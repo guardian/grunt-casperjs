@@ -1,4 +1,4 @@
-var path = require('path')
+var path = require('path');
 
 exports.init = function(grunt) {
   var exports = {};
@@ -88,7 +88,8 @@ exports.init = function(grunt) {
 
     exec(command, {
         env: {
-            "PHANTOMJS_EXECUTABLE": phantomBinPath
+            "PHANTOMJS_EXECUTABLE": phantomBinPath,
+            "ENVIRONMENT" : process.env.ENVIRONMENT || "dev"
         }
     }, puts);
 
