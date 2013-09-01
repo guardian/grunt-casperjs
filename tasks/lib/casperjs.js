@@ -39,7 +39,7 @@ exports.init = function(grunt) {
       command += ' --post=' + options.post.join(',');
     }
 
-	  if (options.webSecurity === false) {
+   if (options.webSecurity === false) {
       command += ' --web-security=no';
     }
 
@@ -59,10 +59,6 @@ exports.init = function(grunt) {
       command += ' --ssl-protocol='+ options.sslProtocol;
     }
 
-    if (options.ignoreSslErrors) {
-      command += ' --ignore-ssl-errors='+ options.ignoreSslErrors;
-    }
-
     if (options.cookiesFile) {
       command += ' --cookies-file='+ options.cookiesFile;
     }
@@ -70,7 +66,6 @@ exports.init = function(grunt) {
     if (options.ignoreSslErrors) {
       command += ' --ignore-ssl-errors='+ options.ignoreSslErrors;
     }
-
 
     if (options.ignoreSslErrors) {
       command += ' --ignore-ssl-errors=yes';
