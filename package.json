@@ -30,7 +30,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "phantomjs": "1.9.1-0",
+    "phantomjs": "git://github.com/theefer/phantomjs.git#download-to-unique-dir",
     "rimraf": "~2.1.4",
     "adm-zip": "~0.4.3"
   },
