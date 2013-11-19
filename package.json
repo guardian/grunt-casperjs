@@ -46,6 +46,7 @@
     "test": "grunt test"
   },
   "dependencies": {
+    "casperjs": "*",
     "phantomjs": "~1.9.1",
     "rimraf": "~2.1.4",
     "adm-zip": "~0.4.3"
