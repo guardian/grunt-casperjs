@@ -18,4 +18,4 @@ cp.exec("casperjs --version", function(error, stdout, stderr) {
             fs.symlinkSync(casperExecutable, './casperjs');
         });
     }
-}
+});
